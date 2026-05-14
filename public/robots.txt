@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://subhauler.com/sitemap.xml
