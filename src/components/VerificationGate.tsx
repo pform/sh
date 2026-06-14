@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ShieldCheck, Fingerprint, Loader2, Mail, ArrowRight } from "lucide-react";
 import { CONTACT_EMAIL } from "../constants";
@@ -6,11 +6,18 @@ import { CONTACT_EMAIL } from "../constants";
 export const VerificationGate = () => {
   const [status, setStatus] = useState<'idle' | 'verifying' | 'success'>('idle');
 
+  const [emailUser, emailDomain] = CONTACT_EMAIL.split("@");
+
   const startVerification = () => {
     setStatus('verifying');
     setTimeout(() => {
       setStatus('success');
     }, 2000);
+  };
+
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.location.href = `mailto:${emailUser}@${emailDomain}`;
   };
 
   return (
@@ -71,10 +78,13 @@ export const VerificationGate = () => {
               <div className="mt-6 flex flex-col items-center gap-2">
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Administrative Channel</span>
                 <a 
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="text-2xl md:text-3xl font-extrabold text-zinc-900 hover:text-blue-600 transition-colors underline decoration-2 underline-offset-8"
+                  href="#"
+                  onClick={handleEmailClick}
+                  className="text-2xl md:text-3xl font-extrabold text-zinc-900 hover:text-blue-600 transition-colors underline decoration-2 underline-offset-8 flex items-center justify-center gap-1 cursor-pointer"
                 >
-                  {CONTACT_EMAIL}
+                  <span>{emailUser}</span>
+                  <span className="text-blue-600 px-0.5 select-none font-semibold text-lg md:text-xl">[at]</span>
+                  <span>{emailDomain}</span>
                 </a>
               </div>
             </div>

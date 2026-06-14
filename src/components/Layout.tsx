@@ -70,6 +70,7 @@ export const Layout = ({ children }: LayoutProps) => {
                 <a href={GODADDY_URL} className="hover:text-blue-600 transition-colors font-bold text-slate-900">Buy via GoDaddy</a>
                 <Link to="/services" className="hover:text-blue-600 transition-colors">Why Subhauler.com?</Link>
                 <Link to="/contact" className="hover:text-blue-600 transition-colors">Contact Information</Link>
+                <Link to="/other-assets" className="hover:text-blue-600 transition-colors">Other Assets</Link>
               </div>
             </div>
             <div>
@@ -85,10 +86,8 @@ export const Layout = ({ children }: LayoutProps) => {
             <span className="text-xs font-medium text-slate-400">
               &copy; {new Date().getFullYear()} Subhauler.com. All operations restricted.
             </span>
-            <div className="flex gap-8 text-[10px] items-center text-slate-300 font-bold uppercase tracking-widest">
-              <span>Systems_Check_OK</span>
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span>SSL_Secure_256</span>
+            <div className="text-xs font-medium text-slate-400">
+              Site by <a href="https://feelize.com/start" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 text-slate-600 font-semibold transition-colors">Feelize</a>
             </div>
           </div>
         </div>

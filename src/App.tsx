@@ -10,6 +10,7 @@ import { Solutions } from "./pages/Solutions";
 import { Contact } from "./pages/Contact";
 import { Privacy } from "./pages/Privacy";
 import { Terms } from "./pages/Terms";
+import { OtherAssets } from "./pages/OtherAssets";
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -42,6 +43,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} /> 
             <Route path="/privacy" element={<Privacy />} /> 
             <Route path="/terms" element={<Terms />} /> 
+            <Route path="/other-assets" element={<OtherAssets />} /> 
           </Routes>
         </PageTransition>
       </Layout>
