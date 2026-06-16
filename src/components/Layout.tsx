@@ -74,11 +74,13 @@ export const Layout = ({ children }: LayoutProps) => {
               </div>
             </div>
             <div>
-              <h5 className="font-bold text-slate-900 mb-6">Legal</h5>
+              <h5 className="font-bold text-slate-900 mb-6">Registry & SEO</h5>
               <div className="flex flex-col gap-4 text-sm text-slate-500">
                 <Link to="/privacy" className="hover:text-blue-600 transition-colors">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-blue-600 transition-colors">Transaction Terms</Link>
-                <span className="cursor-default">Asset ID: SHL-401-NET</span>
+                <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">XML Sitemap</a>
+                <a href="/robots.txt" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">AI Crawler Rules</a>
+                <span className="cursor-default text-xs text-slate-400 font-mono">Asset ID: SHL-401-NET</span>
               </div>
             </div>
           </div>

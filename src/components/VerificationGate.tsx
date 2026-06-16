@@ -32,19 +32,19 @@ export const VerificationGate = () => {
             className="flex flex-col items-center gap-6"
           >
             <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white">
-              <Fingerprint size={24} />
+              <Mail size={24} />
             </div>
             <div>
-              <h4 className="text-2xl font-extrabold tracking-tight text-zinc-900">Secure Access</h4>
-              <p className="text-sm text-zinc-500 mt-2 max-w-xs mx-auto">
-                Authorized inquiries only. Please complete the verification handshake to reveal administrator contact.
+              <h4 className="text-2xl font-extrabold tracking-tight text-zinc-900">Contact Domain Owner</h4>
+              <p className="text-sm text-zinc-500 mt-2 max-w-sm mx-auto">
+                If you would like to get in touch with the owner or make an inquiry, please click below to reveal the administrative contact details.
               </p>
             </div>
             <button
               onClick={startVerification}
-              className="mt-2 w-full max-w-xs bg-zinc-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 transition-all flex items-center justify-center gap-3"
+              className="mt-2 w-full max-w-xs bg-zinc-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 transition-all flex items-center justify-center gap-3 rounded-full"
             >
-              Verify Identity <ArrowRight size={14} />
+              Contact Domain Owner <ArrowRight size={14} />
             </button>
           </motion.div>
         )}
