@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
 import { ContainerFrame } from "../components/ContainerFrame";
 import { VerificationGate } from "../components/VerificationGate";
 import { SEO } from "../components/SEO";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 export const Contact = () => {
   return (
@@ -10,7 +11,30 @@ export const Contact = () => {
       <SEO 
         title="Contact Administrative Registry" 
         description="Get in touch for strategic acquisition inquiries, direct partnerships, or technical integration discussions regarding the Subhauler.com asset."
+        schema={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.subhauler.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Contact",
+                  "item": "https://www.subhauler.com/contact"
+                }
+              ]
+            }
+          ]
+        }}
       />
+      <Breadcrumbs />
       <div className="max-w-3xl mb-24">
         <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-8 tracking-tight">
           Establish Contact.

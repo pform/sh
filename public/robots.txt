@@ -20,4 +20,4 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
-Sitemap: https://subhauler.com/sitemap.xml
+Sitemap: https://www.subhauler.com/sitemap.xml

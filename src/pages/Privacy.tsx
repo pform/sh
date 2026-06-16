@@ -1,4 +1,5 @@
 import { SEO } from "../components/SEO";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 export const Privacy = () => {
   return (
@@ -7,6 +8,7 @@ export const Privacy = () => {
         title="Privacy Protocol" 
         description="Our high-rigor protocol for handling metadata and administrative information within the Subhauler digital corridors."
       />
+      <Breadcrumbs />
       <h1 className="text-4xl font-bold text-slate-900 mb-12">Privacy Protocol</h1>
       <p className="text-lg mb-8">
         At Subhauler.com, we treat data privacy with the same industrial rigor we apply to freight coordination. 

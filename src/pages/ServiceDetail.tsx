@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle, Package, Truck, Boxes, Ship, Globe, Shield } fr
 import { ContainerFrame } from "../components/ContainerFrame";
 import { SEO } from "../components/SEO";
 import { SEO_KEYWORDS, GODADDY_URL } from "../constants";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 export const ServiceDetail = () => {
   const { slug } = useParams();
@@ -24,8 +25,11 @@ export const ServiceDetail = () => {
         <img 
           id="service-detail-hero-image"
           src={`https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=1600`}
-          alt="Logistics context"
+          alt={`Subhauler logistics and freight distribution hub illustrating advanced ${serviceName.toLowerCase()} solutions`}
           className="w-full h-full object-cover [mask-image:linear-gradient(to_bottom,black,transparent)] opacity-60"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
       </div>
@@ -44,19 +48,19 @@ export const ServiceDetail = () => {
                   "@type": "ListItem",
                   "position": 1,
                   "name": "Home",
-                  "item": "https://subhauler.com/"
+                  "item": "https://www.subhauler.com/"
                 },
                 {
                   "@type": "ListItem",
                   "position": 2,
                   "name": "Features",
-                  "item": "https://subhauler.com/services"
+                  "item": "https://www.subhauler.com/services"
                 },
                 {
                   "@type": "ListItem",
                   "position": 3,
                   "name": serviceName,
-                  "item": `https://subhauler.com/services/${slug}`
+                  "item": `https://www.subhauler.com/services/${slug}`
                 }
               ]
             },
@@ -72,6 +76,10 @@ export const ServiceDetail = () => {
           ]
         }}
       />
+
+      <div className="relative z-10">
+        <Breadcrumbs />
+      </div>
 
       <motion.div
         initial={{ opacity: 0, x: -10 }}

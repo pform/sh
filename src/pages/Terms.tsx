@@ -1,4 +1,5 @@
 import { SEO } from "../components/SEO";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 export const Terms = () => {
   return (
@@ -7,6 +8,7 @@ export const Terms = () => {
         title="Transaction Terms" 
         description="Operational terms governing the inquiry and acquisition of the Subhauler.com digital logistics asset."
       />
+      <Breadcrumbs />
       <h1 className="text-4xl font-bold text-slate-900 mb-12">Transaction Terms</h1>
       <p className="text-lg mb-8">
         The following terms govern the inquiry and acquisition of the Subhauler.com digital asset.

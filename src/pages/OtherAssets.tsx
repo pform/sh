@@ -1,13 +1,20 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ExternalLink, Shield, ArrowUpRight, CheckCircle2, Globe, Database, Search, Tag, Server, HelpCircle } from "lucide-react";
 import { ContainerFrame } from "../components/ContainerFrame";
 import { SEO } from "../components/SEO";
 import { OTHER_DOMAINS } from "./assetsData";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 export const OtherAssets = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  // Reset visibleCount on filter or search query change
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [searchQuery, selectedTag]);
 
   // Extract all unique tags across all domains
   const allTags = useMemo(() => {
@@ -38,7 +45,44 @@ export const OtherAssets = () => {
       <SEO 
         title="Other Premium Digital Assets" 
         description="Explore our complete registry portfolio of thirty-seven high-value digital properties and premium domains available for purchase."
+        schema={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.subhauler.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Other Assets",
+                  "item": "https://www.subhauler.com/other-assets"
+                }
+              ]
+            },
+            {
+              "@type": "ItemList",
+              "name": "Premium Digital Asset Registry",
+              "description": "Thirty-seven premium brandable digital properties and domain names available for strategic acquisition.",
+              "numberOfItems": OTHER_DOMAINS.length,
+              "itemListElement": OTHER_DOMAINS.map((domain, i) => ({
+                "@type": "ListItem",
+                "position": i + 1,
+                "url": domain.url,
+                "name": domain.domain,
+                "description": domain.description
+              }))
+            }
+          ]
+        }}
       />
+      
+      <Breadcrumbs />
       
       {/* Header section with rich typography */}
       <div className="max-w-4xl mb-20" id="other-assets-heading">
@@ -122,7 +166,7 @@ export const OtherAssets = () => {
           {/* Staggered Animated Cards */}
           <div className="space-y-6">
             <AnimatePresence mode="popLayout">
-              {filteredDomains.map((asset, idx) => (
+              {filteredDomains.slice(0, visibleCount).map((asset, idx) => (
                 <motion.div 
                   layout
                   key={asset.domain}
@@ -204,6 +248,23 @@ export const OtherAssets = () => {
                   </div>
                 </motion.div>
               ))}
+
+              {filteredDomains.length > visibleCount && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-center pt-6 pb-2"
+                  id="load-more-assets-wrapper"
+                >
+                  <button
+                    id="btn-load-more-assets"
+                    onClick={() => setVisibleCount(prev => prev + 12)}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all uppercase tracking-widest rounded-full shadow-sm hover:shadow"
+                  >
+                    Load More Premium Assets ({filteredDomains.length - visibleCount} remaining)
+                  </button>
+                </motion.div>
+              )}
 
               {filteredDomains.length === 0 && (
                 <motion.div 

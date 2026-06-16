@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Zap, Cpu, BarChart3, Radio, Layers, Cog, ShieldCheck, Activity, ArrowRight } from "lucide-react";
 import { SEO } from "../components/SEO";
 import { GODADDY_URL } from "../constants";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 const solutions = [
   {
@@ -38,8 +39,11 @@ export const Solutions = () => {
         <img 
           id="solutions-hero-image"
           src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&q=80&w=1200" 
-          alt="Atmospheric logistics"
+          alt="Fleet of highway heavy carriage trucks traveling on freight routes simulating real-time subhaul routing network coordinates"
           className="w-full h-full object-cover [mask-image:linear-gradient(to_bottom,black,transparent)] opacity-40"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
       </div>
@@ -58,19 +62,21 @@ export const Solutions = () => {
                   "@type": "ListItem",
                   "position": 1,
                   "name": "Home",
-                  "item": "https://subhauler.com/"
+                  "item": "https://www.subhauler.com/"
                 },
                 {
                   "@type": "ListItem",
                   "position": 2,
                   "name": "Market Value",
-                  "item": "https://subhauler.com/solutions"
+                  "item": "https://www.subhauler.com/solutions"
                 }
               ]
             }
           ]
         }}
       />
+
+      <Breadcrumbs />
 
       <div className="max-w-4xl mb-32 relative z-10">
         <motion.div

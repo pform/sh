@@ -13,7 +13,7 @@ export const SEO = ({
   title = "Subhauler.com | Premium Logistics & Freight Domain Asset", 
   description = "Acquire Subhauler.com - the definitive digital asset for modern logistics, intermodal freight coordination, and regional shipping networks. Available for immediate transfer.",
   keywords = "subhauler, logistics domain, freight brokerage, shipping network, intermodal transport, trucking asset, subhauler coordinate, freight shipping software, shipping carrier portal",
-  canonical = "https://subhauler.com",
+  canonical = "https://www.subhauler.com",
   type = "website",
   schema
 }: SEOProps) => {
@@ -24,20 +24,91 @@ export const SEO = ({
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://subhauler.com/#website",
-        "url": "https://subhauler.com",
+        "@id": "https://www.subhauler.com/#website",
+        "url": "https://www.subhauler.com",
         "name": "Subhauler.com",
         "description": "Premium Logistics & Freight Domain Asset",
-        "publisher": { "@id": "https://subhauler.com/#organization" }
+        "publisher": { "@id": "https://www.subhauler.com/#organization" }
       },
       {
         "@type": "Organization",
-        "@id": "https://subhauler.com/#organization",
+        "@id": "https://www.subhauler.com/#organization",
         "name": "Subhauler",
-        "url": "https://subhauler.com",
+        "url": "https://www.subhauler.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://subhauler.com/logo.png"
+          "url": "https://www.subhauler.com/logo.png"
+        },
+        "description": "Enterprise digital brand and systems architecture for coordinating regional subhaulers and freight brokerage logistics.",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Subhauler Logistics Services Portfolio",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Subhaul Coordination",
+                "description": "Advanced networking protocols for connecting regional subhaulers with master freight brokers."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Freight Shipping",
+                "description": "High-density cargo transport management and intermodal shipping solutions."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Logistics Networking",
+                "description": "Digital infrastructure for supply chain transparency and real-time asset tracking."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Container Management",
+                "description": "Optimized storage and transition strategies for shipping container fleets."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Carrier Management",
+                "description": "Unified platforms for carrier compliance, vetting, and performance metrics."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Last Mile Logistics",
+                "description": "Precision coordination for final delivery stages in urban and industrial zones."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Intermodal Transport",
+                "description": "Seamless transitions between rail, sea, and road transport modes."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Brokerage Services",
+                "description": "Algorithmic matching for freight brokers and owner-operators."
+              }
+            }
+          ]
         }
       },
       {
@@ -64,6 +135,7 @@ export const SEO = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={canonical} />
+      <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       
       {/* Search Engine Optimization */}
       <meta name="robots" content="index, follow" />

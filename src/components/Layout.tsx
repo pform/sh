@@ -29,9 +29,11 @@ export const Layout = ({ children }: LayoutProps) => {
               <span className="text-slate-400">.com</span>
             </span>
           </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link to="/services" className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Domain Features</Link>
+          <div className="hidden md:flex items-center gap-6">
+            <Link to="/services" className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Features</Link>
             <Link to="/solutions" className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Market Value</Link>
+            <Link to="/coverage" className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Coverage Nodes</Link>
+            <Link to="/glossary" className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">Glossary</Link>
             <Link to="/about" className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">How to Buy</Link>
             <a 
               href={GODADDY_URL} 
@@ -74,8 +76,10 @@ export const Layout = ({ children }: LayoutProps) => {
               </div>
             </div>
             <div>
-              <h5 className="font-bold text-slate-900 mb-6">Registry & SEO</h5>
+              <h5 className="font-bold text-slate-900 mb-6">Registry &amp; SEO</h5>
               <div className="flex flex-col gap-4 text-sm text-slate-500">
+                <Link to="/coverage" className="hover:text-blue-600 transition-colors">Corridor Coverage (40 Nodes)</Link>
+                <Link to="/glossary" className="hover:text-blue-600 transition-colors">Broker Glossary (40 Terms)</Link>
                 <Link to="/privacy" className="hover:text-blue-600 transition-colors">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-blue-600 transition-colors">Transaction Terms</Link>
                 <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">XML Sitemap</a>

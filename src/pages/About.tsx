@@ -1,10 +1,41 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { CheckCircle2, History, Target, Users, ArrowRight } from "lucide-react";
+import { CheckCircle2, History, Target, Users, ArrowRight, ChevronDown } from "lucide-react";
 import { SEO } from "../components/SEO";
 import { GODADDY_URL } from "../constants";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+
+const faqs = [
+  {
+    question: "How does the domain transfer process work after checkout?",
+    answer: "Once you finalize the purchase on GoDaddy's premium marketplace, a secure transfer is initiated. GoDaddy serves as the neutral escrow agent. You will receive an Authorization Code (EPP transfer key) via email within hours, allowing you to instantly push the domain to your own account or transfer it to any registrar of your choice."
+  },
+  {
+    question: "Can I use Subhauler.com for email, SaaS, and carrier portal integrations immediately?",
+    answer: "Yes, absolutely. Once the domain transfer is complete, you own 100% of the DNS management. You can configure custom corporate emails (e.g., info@subhauler.com), set up an enterprise landing page, or map it to a tracking portal for subhaulers and logistics coordination."
+  },
+  {
+    question: "Are there any recurring or hidden brokerage fees?",
+    answer: "No. The purchase on GoDaddy is a one-time acquisition for full perpetual ownership. No residual royalties or broker commissions are charged. The only onward cost is your standard annual domain renewal fee directly with your hosting registrar (typically around $10-$15 per year)."
+  },
+  {
+    question: "Why is a premium logistics keyword like 'Subhauler' highly valuable?",
+    answer: "Premium, short, single-word domain assets are finite. In logistics, the term 'Subhauler' is a primary commercial keyword representing regional carriers who execute overflow freight contracts. Owning the exact match .com establishes instant market dominance, ranks exceptionally well on search engines, and saves thousands of dollars in annual Google Ads search spend."
+  },
+  {
+    question: "Is escrow and transaction protection included?",
+    answer: "Yes, GoDaddy handles the transfer process under strict regulatory escrow guidelines. This guarantees that your payment is only released to the seller once the domain's transfer credentials have been successfully released to you."
+  }
+];
 
 export const About = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 pb-40 relative overflow-hidden">
       <SEO 
@@ -21,19 +52,32 @@ export const About = () => {
                   "@type": "ListItem",
                   "position": 1,
                   "name": "Home",
-                  "item": "https://subhauler.com/"
+                  "item": "https://www.subhauler.com/"
                 },
                 {
                   "@type": "ListItem",
                   "position": 2,
                   "name": "Buy Domain",
-                  "item": "https://subhauler.com/about"
+                  "item": "https://www.subhauler.com/about"
                 }
               ]
+            },
+            {
+              "@type": "FAQPage",
+              "mainEntity": faqs.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer
+                }
+              }))
             }
           ]
         }}
       />
+      
+      <Breadcrumbs />
       
       {/* Scattered Decorative Elements */}
       <div className="absolute top-1/4 -right-20 w-96 h-96 bg-blue-50 rounded-full blur-[120px] -z-10 opacity-60" />
@@ -141,10 +185,70 @@ export const About = () => {
         <section className="relative rounded-[3.5rem] overflow-hidden group">
           <img 
             src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=1200" 
-            alt="Trucking logistics center" 
+            alt="Industrial trucking logistics terminal with fleets of shipping trucks representing reliable intermodal transport and subhaul capacity" 
             className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 transition-all duration-1000 shadow-2xl"
+            loading="lazy"
+            decoding="async"
           />
         </section>
+      </div>
+
+      {/* Dynamic interactive FAQ section */}
+      <div className="max-w-3xl mx-auto mb-40 border-t border-slate-100 pt-32" id="faq-section">
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+            Frequently Asked Questions
+          </span>
+          <h2 className="text-4xl font-[800] text-slate-900 tracking-tight">
+            Acquisition &amp; Transfer FAQ
+          </h2>
+          <p className="text-lg text-slate-500 mt-4">
+            Everything you need to know about purchasing and deploying Subhauler.com
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => {
+            const isExpanded = expandedIndex === idx;
+            return (
+              <div 
+                key={idx}
+                id={`faq-item-${idx}`}
+                className={`bg-white border rounded-[2rem] transition-all duration-300 overflow-hidden ${
+                  isExpanded 
+                    ? "border-blue-500 shadow-xl shadow-blue-500/5 ring-1 ring-blue-500/10" 
+                    : "border-slate-100 hover:border-slate-300 hover:shadow-lg"
+                }`}
+              >
+                <button
+                  id={`faq-button-${idx}`}
+                  onClick={() => toggleFAQ(idx)}
+                  className="w-full flex justify-between items-center text-left p-6 md:p-8 font-bold text-lg text-slate-900 hover:text-blue-600 transition-colors focus:outline-none"
+                    aria-expanded={isExpanded}
+                >
+                  <span className="pr-4">{faq.question}</span>
+                  <ChevronDown 
+                    className={`transform transition-transform duration-300 text-slate-400 shrink-0 ${
+                      isExpanded ? "rotate-180 text-blue-600" : ""
+                    }`} 
+                    size={20}
+                  />
+                </button>
+                
+                <div 
+                  id={`faq-answer-container-${idx}`}
+                  className={`transition-all duration-300 ease-in-out ${
+                    isExpanded ? "max-h-96 border-t border-slate-50" : "max-h-0 pointer-events-none"
+                  }`}
+                >
+                  <p className="p-6 md:p-8 text-base text-slate-500 leading-relaxed bg-slate-50/50">
+                    {faq.answer}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div className="max-w-3xl mx-auto text-center">

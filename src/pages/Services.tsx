@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Truck, Package, Boxes, Ship, Anchor, Database, Share2, MapPin, Shield } from "lucide-react";
 import { SEO } from "../components/SEO";
 import { SEO_KEYWORDS } from "../constants";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 const services = [
   {
@@ -80,13 +81,13 @@ export const Services = () => {
                   "@type": "ListItem",
                   "position": 1,
                   "name": "Home",
-                  "item": "https://subhauler.com/"
+                  "item": "https://www.subhauler.com/"
                 },
                 {
                   "@type": "ListItem",
                   "position": 2,
                   "name": "Features",
-                  "item": "https://subhauler.com/services"
+                  "item": "https://www.subhauler.com/services"
                 }
               ]
             },
@@ -98,13 +99,14 @@ export const Services = () => {
               "itemListElement": services.map((s, i) => ({
                 "@type": "ListItem",
                 "position": i + 1,
-                "url": `https://subhauler.com/services/${s.slug}`,
+                "url": `https://www.subhauler.com/services/${s.slug}`,
                 "name": s.title
               }))
             }
           ]
         }}
       />
+      <Breadcrumbs />
       <div className="max-w-3xl mb-20">
         <h1 className="text-5xl font-bold text-slate-900 mb-6">Logistics Ecosystem.</h1>
         <p className="text-xl text-slate-500 leading-relaxed">
