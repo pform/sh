@@ -1,0 +1,96 @@
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { ShieldCheck, Fingerprint, Loader2, Mail, ArrowRight } from "lucide-react";
+import { CONTACT_EMAIL } from "../constants";
+
+export const VerificationGate = () => {
+  const [status, setStatus] = useState<'idle' | 'verifying' | 'success'>('idle');
+
+  const [emailUser, emailDomain] = CONTACT_EMAIL.split("@");
+
+  const startVerification = () => {
+    setStatus('verifying');
+    setTimeout(() => {
+      setStatus('success');
+    }, 2000);
+  };
+
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.location.href = `mailto:${emailUser}@${emailDomain}`;
+  };
+
+  return (
+    <div className="bg-white border border-slate-100 p-10 text-center relative overflow-hidden group rounded-3xl shadow-lg">
+      <AnimatePresence mode="wait">
+        {status === 'idle' && (
+          <motion.div
+            key="idle"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="flex flex-col items-center gap-6"
+          >
+            <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white">
+              <Mail size={24} />
+            </div>
+            <div>
+              <h4 className="text-2xl font-extrabold tracking-tight text-zinc-900">Contact Domain Owner</h4>
+              <p className="text-sm text-zinc-500 mt-2 max-w-sm mx-auto">
+                If you would like to get in touch with the owner or make an inquiry, please click below to reveal the administrative contact details.
+              </p>
+            </div>
+            <button
+              onClick={startVerification}
+              className="mt-2 w-full max-w-xs bg-zinc-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 transition-all flex items-center justify-center gap-3 rounded-full"
+            >
+              Contact Domain Owner <ArrowRight size={14} />
+            </button>
+          </motion.div>
+        )}
+
+        {status === 'verifying' && (
+          <motion.div
+            key="verifying"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center gap-4 py-8"
+          >
+            <Loader2 className="animate-spin text-blue-600" size={32} />
+            <div className="text-sm text-slate-400 font-medium tracking-tight">
+              Verifying credentials...
+            </div>
+          </motion.div>
+        )}
+
+        {status === 'success' && (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex flex-col items-center gap-6"
+          >
+            <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white">
+              <ShieldCheck size={24} />
+            </div>
+            <div>
+              <h4 className="text-xl font-bold text-zinc-900">Verification Successful</h4>
+              <div className="mt-6 flex flex-col items-center gap-2">
+                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Administrative Channel</span>
+                <a 
+                  href="#"
+                  onClick={handleEmailClick}
+                  className="text-2xl md:text-3xl font-extrabold text-zinc-900 hover:text-blue-600 transition-colors underline decoration-2 underline-offset-8 flex items-center justify-center gap-1 cursor-pointer"
+                >
+                  <span>{emailUser}</span>
+                  <span className="text-blue-600 px-0.5 select-none font-semibold text-lg md:text-xl">[at]</span>
+                  <span>{emailDomain}</span>
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
