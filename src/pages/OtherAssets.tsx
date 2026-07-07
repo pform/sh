@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { ExternalLink, Shield, ArrowUpRight, CheckCircle2, Globe, Database, Search, Tag, Server, HelpCircle } from "lucide-react";
 import { ContainerFrame } from "../components/ContainerFrame";
@@ -181,9 +182,12 @@ export const OtherAssets = () => {
                     {/* Domain Identifier and status tag */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight lowercase">
+                        <Link 
+                          to={`/other-assets/${asset.domain}`}
+                          className="text-2xl sm:text-3xl font-black text-slate-900 hover:text-blue-600 transition-colors tracking-tight lowercase"
+                        >
                           {asset.domain}
-                        </span>
+                        </Link>
                         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold border ${
                           asset.status.includes("Active") 
                             ? "bg-emerald-50 text-emerald-600 border-emerald-100"
@@ -196,16 +200,14 @@ export const OtherAssets = () => {
                       
                       {/* Domain icon links */}
                       <div className="flex items-center gap-2 shrink-0">
-                        <a 
+                        <Link 
                           id={`asset-link-icon-${asset.domain.replace('.', '-')}`}
-                          href={asset.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          to={`/other-assets/${asset.domain}`}
                           className="p-2.5 text-slate-400 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 rounded-full transition-colors flex items-center justify-center border border-slate-100"
-                          title={`Visit ${asset.domain}`}
+                          title={`Analyze ${asset.domain}`}
                         >
                           <Globe size={18} />
-                        </a>
+                        </Link>
                       </div>
                     </div>
 
@@ -236,15 +238,13 @@ export const OtherAssets = () => {
                       <span>{asset.escrow}</span>
                     </div>
                     
-                    <a 
+                    <Link 
                       id={`asset-btn-${asset.domain.replace('.', '-')}`}
-                      href={asset.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      to={`/other-assets/${asset.domain}`}
                       className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-3 rounded-full shadow transition-transform hover:-translate-y-0.5"
                     >
-                      Visit Domain <ArrowUpRight size={14} />
-                    </a>
+                      Analyze Valuation <ArrowUpRight size={14} />
+                    </Link>
                   </div>
                 </motion.div>
               ))}

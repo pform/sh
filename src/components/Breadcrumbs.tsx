@@ -22,8 +22,55 @@ const SERVICE_SLUGS: Record<string, string> = {
   "freight-brokerage-services": "Brokerage Services"
 };
 
-export const Breadcrumbs = () => {
+interface BreadcrumbItem {
+  label: string;
+  path: string;
+}
+
+interface BreadcrumbsProps {
+  customItems?: BreadcrumbItem[];
+}
+
+export const Breadcrumbs = ({ customItems }: BreadcrumbsProps) => {
   const location = useLocation();
+
+  // If custom items are provided, render them explicitly
+  if (customItems && customItems.length > 0) {
+    return (
+      <nav 
+        aria-label="Breadcrumb" 
+        id="breadcrumbs-navigation" 
+        className="flex items-center gap-2 py-4 px-1 mb-8 text-xs font-medium text-slate-400 select-none overflow-x-auto whitespace-nowrap scrollbar-none"
+      >
+        {customItems.map((item, index) => {
+          const last = index === customItems.length - 1;
+          const isHome = index === 0;
+
+          return (
+            <div key={item.path} className="flex items-center gap-2" id={`breadcrumb-item-custom-${index}`}>
+              {!isHome && <ChevronRight className="w-3.5 h-3.5 text-slate-300" />}
+              {last ? (
+                <span className="text-slate-800 font-semibold" aria-current="page">
+                  {item.label}
+                </span>
+              ) : (
+                <Link 
+                  to={item.path} 
+                  className={`flex items-center gap-1.5 transition-colors duration-200 ${
+                    isHome ? "hover:text-blue-600 text-slate-400" : "hover:text-blue-600"
+                  }`}
+                >
+                  {isHome && <Home className="w-3.5 h-3.5" />}
+                  <span>{item.label}</span>
+                </Link>
+              )}
+            </div>
+          );
+        })}
+      </nav>
+    );
+  }
+
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   // Home route doesn't need a breadcrumb rendered below itself

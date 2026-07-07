@@ -1,11 +1,30 @@
 import React, { useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
-import { Search, ArrowLeft, BookOpen, ShieldCheck, Tag, HelpCircle, ExternalLink, Scale } from "lucide-react";
+import { Search, ArrowLeft, BookOpen, ShieldCheck, Tag, HelpCircle, ExternalLink, Scale, MapPin } from "lucide-react";
 import { SEO } from "../components/SEO";
-import { glossaryTerms, GlossaryTerm } from "../data/seoContent";
+import { glossaryTerms, GlossaryTerm, regionalHubs } from "../data/seoContent";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { GODADDY_URL } from "../constants";
+
+const getStableLinkedItems = <T,>(slug: string, list: T[], count = 4): T[] => {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = (hash << 5) - hash + slug.charCodeAt(i);
+    hash |= 0;
+  }
+  hash = Math.abs(hash);
+  
+  const results: T[] = [];
+  const listLen = list.length;
+  const chosenIndices = new Set<number>();
+  for (let i = 0; i < count * 2 && chosenIndices.size < count; i++) {
+    const idx = (hash + i * 13) % listLen;
+    chosenIndices.add(idx);
+  }
+  chosenIndices.forEach(idx => results.push(list[idx]));
+  return results;
+};
 
 export const Glossary = () => {
   const { slug } = useParams<{ slug?: string }>();
@@ -215,6 +234,40 @@ export const Glossary = () => {
                     <ArrowLeft size={12} className="rotate-180 text-slate-300" />
                   </Link>
                 ))}
+            </div>
+          </div>
+
+          {/* Active regional nodes network links */}
+          <div className="mt-16 bg-slate-50/50 rounded-[2.5rem] p-8 border border-slate-100">
+            <h2 className="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <MapPin size={18} className="text-blue-600" /> Active Regional Hubs & Route Lanes
+            </h2>
+            <p className="text-sm text-slate-500 mb-6 font-medium">
+              Geofenced transloading points and subhaul networks executing carrier {activeTerm.term.toLowerCase()} operations across peak logistics corridors:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {getStableLinkedItems(activeTerm.slug, regionalHubs, 4).map((hub) => (
+                <Link
+                  key={hub.slug}
+                  to={`/coverage/${hub.slug}`}
+                  className="p-5 bg-white border border-slate-150 rounded-2xl hover:border-blue-600 hover:shadow-lg transition-all flex flex-col justify-between group h-32"
+                >
+                  <div>
+                    <span className="text-[10px] font-mono text-blue-500 uppercase font-[800] tracking-wider leading-none block mb-1">
+                      {hub.region} ZONE
+                    </span>
+                    <h4 className="text-base font-bold text-slate-900 leading-tight">
+                      {hub.city}, {hub.state}
+                    </h4>
+                  </div>
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="text-[11px] font-semibold text-slate-400 group-hover:text-blue-600 group-hover:underline transition-colors">
+                      View Hub Network
+                    </span>
+                    <ArrowLeft size={14} className="rotate-180 text-slate-300 group-hover:text-blue-600 transition-colors" />
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

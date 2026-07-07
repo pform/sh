@@ -4,6 +4,10 @@ import {
   ArrowRight,
   Globe,
   Shield,
+  ShieldCheck,
+  Check,
+  Activity,
+  Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ContainerFrame } from "../components/ContainerFrame";
@@ -130,50 +134,203 @@ export const Home = () => {
       />
 
       {/* Hero Section */}
-      <div className="relative mb-40 py-24 md:py-32 px-8 md:px-16 rounded-[4rem] overflow-hidden bg-slate-100 shadow-2xl">
-        {/* Background Layer */}
-        <div className="absolute inset-0">
-          <img 
-            id="hero-bg-image"
-            src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=2000" 
-            alt="Subhauler freight logistics terminal with master broker shipping cargo trucks and freight containers for regional transport coordination" 
-            className="w-full h-full object-cover opacity-80"
-            loading="eager"
-            fetchPriority="high"
-            decoding="sync"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent" />
-        </div>
+      <div className="relative mb-24 rounded-[3rem] overflow-hidden bg-slate-950 border border-slate-900 shadow-2xl">
+        {/* Subtle Ambient Background Glows */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 max-w-4xl"
-        >
-          <h1 className="text-5xl md:text-8xl font-[800] text-white leading-[1] mb-8 tracking-tighter" id="hero-title">
-            Definitive <br className="hidden md:block" />
-            <span className="text-blue-400">Logistics Asset.</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-300 leading-relaxed mb-12 font-medium max-w-2xl" id="hero-description">
-            Subhauler.com is a premium digital namespace positioned at the intersection of freight brokerage, regional shipping coordination, and global intermodal transport.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a 
-              id="hero-cta-primary"
-              href={GODADDY_URL}
-              className="inline-flex items-center justify-center px-10 py-5 bg-blue-600 text-white rounded-full font-bold text-xl hover:bg-blue-500 transition-all shadow-2xl shadow-blue-600/30 group"
-            >
-              Buy Subhauler.com <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <Link 
-              id="hero-cta-secondary"
-              to="/about" className="inline-flex items-center justify-center px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full font-bold text-white hover:bg-white/20 transition-all text-xl">
-              Market Value & Stats
-            </Link>
-          </div>
-        </motion.div>
+        <div className="relative z-10 grid lg:grid-cols-12 gap-12 items-center p-8 md:p-16 lg:p-20">
+          
+          {/* Left Column - Headline & Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-7 flex flex-col items-start text-left"
+          >
+            {/* Asset Status Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-xs font-bold text-blue-400 mb-8 uppercase tracking-[0.2em]">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+              Premium Digital Brand Asset
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-6 tracking-tight" id="hero-title">
+              The Definitive <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-500">Logistics Brand.</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-8 max-w-xl font-medium" id="hero-description">
+              Secure <span className="text-white font-bold">Subhauler.com</span> — a premium high-authority namespace engineered for regional carrier coordination, freight brokerages, and intermodal transport networks.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
+              <a 
+                id="hero-cta-primary"
+                href={GODADDY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-4.5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold text-base shadow-xl shadow-blue-600/20 hover:shadow-2xl hover:shadow-blue-600/30 hover:scale-[1.01] transition-all duration-300 group"
+              >
+                Acquire Domain
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={18} />
+              </a>
+              <Link 
+                id="hero-cta-secondary"
+                to="/about" 
+                className="inline-flex items-center justify-center px-8 py-4.5 bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl font-bold text-slate-200 hover:text-white transition-all duration-300 hover:scale-[1.01]"
+              >
+                Market Value & Analytics
+              </Link>
+            </div>
+
+            {/* Trust Indicators Bar */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-slate-900 w-full">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                  <ShieldCheck size={18} />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Escrow Secure</div>
+                  <div className="text-sm font-bold text-white">GoDaddy verified</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                  <Zap size={18} />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Transfer Speed</div>
+                  <div className="text-sm font-bold text-white">Immediate push</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                  <Check size={18} />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Niche Rank</div>
+                  <div className="text-sm font-bold text-white">Top 0.1% logistics</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column - Beautiful Live HUD Mockup */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-5 relative"
+          >
+            {/* Visual Frame */}
+            <div className="relative bg-slate-900/90 border border-slate-800 rounded-[2rem] p-6 shadow-2xl backdrop-blur-md overflow-hidden">
+              {/* Subtle top panel */}
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                </div>
+                <div className="text-[10px] font-mono text-slate-500 tracking-wider font-bold">
+                  SUBHAULER_PORTAL_v4.1
+                </div>
+              </div>
+
+              {/* Status Header */}
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Network Integrity</h4>
+                  <div className="text-xl font-extrabold text-white flex items-center gap-2 mt-0.5">
+                    100% Operational
+                    <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                  </div>
+                </div>
+                <div className="bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700/50">
+                  <div className="text-[10px] font-mono text-emerald-400 uppercase font-bold tracking-widest flex items-center gap-1">
+                    <Activity size={12} className="animate-pulse" /> Live HUD
+                  </div>
+                </div>
+              </div>
+
+              {/* Stylized Active Corridor Route Graphic */}
+              <div className="bg-slate-950/80 border border-slate-800/80 rounded-2xl p-4 mb-5 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-10 mix-blend-overlay">
+                  <div className="w-full h-full bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]" />
+                </div>
+
+                <div className="flex justify-between items-center text-xs text-slate-500 font-bold mb-3">
+                  <span>OR_HUB (Chicagoland)</span>
+                  <span>DEST_PORT (L.A. Basin)</span>
+                </div>
+
+                {/* Animated Signal Route */}
+                <div className="relative h-1 bg-slate-800 rounded-full mb-4">
+                  <div className="absolute top-1/2 left-0 w-3 h-3 -translate-y-1/2 rounded-full bg-blue-500 shadow-md shadow-blue-500/50" />
+                  <div className="absolute top-1/2 right-0 w-3 h-3 -translate-y-1/2 rounded-full bg-indigo-500 shadow-md shadow-indigo-500/50" />
+                  <motion.div 
+                    className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
+                    animate={{ 
+                      width: ["10%", "90%", "10%"],
+                      left: ["0%", "5%", "0%"]
+                    }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <motion.div 
+                    className="absolute top-1/2 w-2 h-2 -translate-y-1/2 rounded-full bg-white"
+                    animate={{ 
+                      left: ["5%", "95%", "5%"]
+                    }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
+
+                <div className="grid grid-cols-3 gap-2 mt-4 text-center">
+                  <div className="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/50">
+                    <div className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Master Broker</div>
+                    <div className="text-xs font-bold text-blue-400 mt-0.5 font-mono">NODE-A</div>
+                  </div>
+                  <div className="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/50">
+                    <div className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Active Fleet</div>
+                    <div className="text-xs font-bold text-emerald-400 mt-0.5 font-mono">40 Units</div>
+                  </div>
+                  <div className="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/50">
+                    <div className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Optimization</div>
+                    <div className="text-xs font-bold text-indigo-400 mt-0.5 font-mono">98.4%</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Graphic Asset representation */}
+              <div className="relative h-44 rounded-2xl overflow-hidden border border-slate-800 group">
+                <img 
+                  id="hero-bg-image"
+                  src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800" 
+                  alt="Subhauler freight logistics terminal with cargo trucks and containers" 
+                  className="w-full h-full object-cover opacity-60 filter saturate-[0.6] group-hover:scale-105 transition-transform duration-700"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+                  <div>
+                    <span className="text-[9px] bg-blue-500 text-white font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider">Asset Visual</span>
+                    <h5 className="text-sm font-extrabold text-white mt-1">Intermodal Terminals</h5>
+                  </div>
+                  <span className="text-[11px] font-mono text-slate-400 font-bold">ID: SHL-401</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Accent Glowing Aura */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-indigo-500/20 rounded-full blur-2xl pointer-events-none" />
+          </motion.div>
+
+        </div>
       </div>
 
       {/* Digital Asset Map / Maze section */}

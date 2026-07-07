@@ -1,11 +1,30 @@
 import React, { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { MapPin, ArrowLeft, ArrowUpRight, Navigation, Cpu, Network, Heart, Shield, Globe } from "lucide-react";
+import { MapPin, ArrowLeft, ArrowUpRight, Navigation, Cpu, Network, Heart, Shield, Globe, BookOpen } from "lucide-react";
 import { SEO } from "../components/SEO";
-import { regionalHubs, RegionalHub } from "../data/seoContent";
+import { regionalHubs, RegionalHub, glossaryTerms } from "../data/seoContent";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { GODADDY_URL } from "../constants";
+
+const getStableLinkedItems = <T,>(slug: string, list: T[], count = 4): T[] => {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = (hash << 5) - hash + slug.charCodeAt(i);
+    hash |= 0;
+  }
+  hash = Math.abs(hash);
+  
+  const results: T[] = [];
+  const listLen = list.length;
+  const chosenIndices = new Set<number>();
+  for (let i = 0; i < count * 2 && chosenIndices.size < count; i++) {
+    const idx = (hash + i * 13) % listLen;
+    chosenIndices.add(idx);
+  }
+  chosenIndices.forEach(idx => results.push(list[idx]));
+  return results;
+};
 
 export const Coverage = () => {
   const { slug } = useParams<{ slug?: string }>();
@@ -234,6 +253,40 @@ export const Coverage = () => {
                     <MapPin size={12} className="text-slate-300 group-hover:text-blue-500" />
                   </Link>
                 ))}
+            </div>
+          </div>
+
+          {/* Active carrier dictionary nodes section */}
+          <div className="mt-16 bg-slate-50/50 rounded-[2.5rem] p-8 border border-slate-100">
+            <h2 className="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <BookOpen size={18} className="text-blue-600" /> Key Cargo &amp; Dispatch Concepts for {activeHub.city}
+            </h2>
+            <p className="text-sm text-slate-500 mb-6 font-medium">
+              Understand standard logistics regulations, carrier metrics, and freight terminology defining shipping workflows in the {activeHub.city} corridor:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {getStableLinkedItems(activeHub.slug, glossaryTerms, 4).map((term) => (
+                <Link
+                  key={term.slug}
+                  to={`/glossary/${term.slug}`}
+                  className="p-5 bg-white border border-slate-150 rounded-2xl hover:border-blue-600 hover:shadow-lg transition-all flex flex-col justify-between group h-32"
+                >
+                  <div>
+                    <span className="text-[10px] font-mono text-blue-500 uppercase font-[800] tracking-wider leading-none block mb-1">
+                      LOGISTICS KEYWORD
+                    </span>
+                    <h4 className="text-base font-bold text-slate-900 leading-tight">
+                      {term.term}
+                    </h4>
+                  </div>
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="text-[11px] font-semibold text-slate-400 group-hover:text-blue-600 group-hover:underline transition-colors truncate max-w-[125px]">
+                      Read Definition
+                    </span>
+                    <ArrowLeft size={14} className="rotate-180 text-slate-300 group-hover:text-blue-600 transition-colors" />
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

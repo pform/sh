@@ -15,11 +15,6 @@ export const VerificationGate = () => {
     }, 2000);
   };
 
-  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    window.location.href = `mailto:${emailUser}@${emailDomain}`;
-  };
-
   return (
     <div className="bg-white border border-slate-100 p-10 text-center relative overflow-hidden group rounded-3xl shadow-lg">
       <AnimatePresence mode="wait">
@@ -78,8 +73,7 @@ export const VerificationGate = () => {
               <div className="mt-6 flex flex-col items-center gap-2">
                 <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Administrative Channel</span>
                 <a 
-                  href="#"
-                  onClick={handleEmailClick}
+                  href={`mailto:${emailUser}@${emailDomain}`}
                   className="text-2xl md:text-3xl font-extrabold text-zinc-900 hover:text-blue-600 transition-colors underline decoration-2 underline-offset-8 flex items-center justify-center gap-1 cursor-pointer"
                 >
                   <span>{emailUser}</span>

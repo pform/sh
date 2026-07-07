@@ -189,7 +189,16 @@ export const ServiceDetail = () => {
       <div className="border-t border-slate-100 pt-20">
         <h3 className="text-xl font-bold mb-10 text-slate-400 uppercase tracking-[0.2em]">Related Logistics Clusters</h3>
         <div className="flex flex-wrap gap-3">
-          {SEO_KEYWORDS.slice().sort(() => Math.random() - 0.5).slice(0, 12).map(k => (
+          {(() => {
+            const hash = slug ? slug.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0) : 0;
+            const len = SEO_KEYWORDS.length;
+            const startIndex = hash % len;
+            const selected = [];
+            for (let i = 0; i < 12; i++) {
+              selected.push(SEO_KEYWORDS[(startIndex + i) % len]);
+            }
+            return selected;
+          })().map(k => (
             <Link 
               key={k}
               to={`/services/${k.toLowerCase().replace(/ /g, '-')}`}
