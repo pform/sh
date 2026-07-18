@@ -9,8 +9,9 @@ export const Contact = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 pb-40">
       <SEO 
-        title="Contact Administrative Registry" 
-        description="Get in touch for strategic acquisition inquiries, direct partnerships, or technical integration discussions regarding the Subhauler.com asset."
+        title="Contact Administrative Registry &amp; Inquiries | Subhauler.com" 
+        description="Submit secure strategic inquiries, verify acquisition credentials, or initiate immediate domain transfer protocols for the Subhauler.com premium logistics asset."
+        keywords="contact subhauler, buy subhauler.com, godaddy brokerage contact, secure transfer inquiry, premium domain registration, logistics brand inquiry"
         schema={{
           "@context": "https://schema.org",
           "@graph": [

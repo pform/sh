@@ -44,8 +44,9 @@ export const OtherAssets = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 pb-40" id="other-assets-viewport">
       <SEO 
-        title="Other Premium Digital Assets" 
-        description="Explore our complete registry portfolio of thirty-seven high-value digital properties and premium domains available for purchase."
+        title="Premium Digital Asset Portfolio &amp; Domains | Subhauler.com" 
+        description="Explore our complete verified registry of 37 high-value digital properties, brandable domain assets, and premium logistics namespaces available for immediate acquisition."
+        keywords="premium domains, premium digital assets, high-value domains, buy logistics domains, saas branding domains, premium .com transfer, domain portfolio"
         schema={{
           "@context": "https://schema.org",
           "@graph": [

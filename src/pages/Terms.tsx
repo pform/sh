@@ -5,8 +5,31 @@ export const Terms = () => {
   return (
     <div className="max-w-4xl mx-auto px-6 py-20 text-slate-600 prose prose-slate max-w-none">
       <SEO 
-        title="Transaction Terms" 
-        description="Operational terms governing the inquiry and acquisition of the Subhauler.com digital logistics asset."
+        title="Acquisition Terms &amp; Transaction Protocols | Subhauler.com" 
+        description="Official operational terms and atomic escrow transfer guidelines governing the inquiry and acquisition of the Subhauler.com digital logistics domain asset."
+        keywords="transaction terms, domain transfer terms, escrow guidelines, asset acquisition protocol, subhauler terms, godaddy escrow compliance"
+        schema={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.subhauler.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Transaction Terms",
+                  "item": "https://www.subhauler.com/terms"
+                }
+              ]
+            }
+          ]
+        }}
       />
       <Breadcrumbs />
       <h1 className="text-4xl font-bold text-slate-900 mb-12">Transaction Terms</h1>

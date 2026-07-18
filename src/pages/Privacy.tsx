@@ -5,8 +5,31 @@ export const Privacy = () => {
   return (
     <div className="max-w-4xl mx-auto px-6 py-20 text-slate-600 prose prose-slate max-w-none">
       <SEO 
-        title="Privacy Protocol" 
-        description="Our high-rigor protocol for handling metadata and administrative information within the Subhauler digital corridors."
+        title="Privacy Policy & Data Security Protocol | Subhauler.com" 
+        description="Our high-rigor protocol for handling administrative inquiry metadata, security encryption, and escrow transaction privacy within the Subhauler digital logistics corridors."
+        keywords="privacy policy, data security protocol, subhauler privacy, secure domain transfer, encrypted inquiry, transaction security"
+        schema={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.subhauler.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Privacy Protocol",
+                  "item": "https://www.subhauler.com/privacy"
+                }
+              ]
+            }
+          ]
+        }}
       />
       <Breadcrumbs />
       <h1 className="text-4xl font-bold text-slate-900 mb-12">Privacy Protocol</h1>

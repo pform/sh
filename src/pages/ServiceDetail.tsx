@@ -65,12 +65,38 @@ export const ServiceDetail = () => {
               ]
             },
             {
+              "@type": "Organization",
+              "@id": "https://www.subhauler.com/#organization",
+              "name": "Subhauler",
+              "url": "https://www.subhauler.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.subhauler.com/logo.png"
+              },
+              "description": "Enterprise digital brand and systems architecture for coordinating regional subhaulers and freight brokerage logistics."
+            },
+            {
+              "@type": "Product",
+              "@id": `https://www.subhauler.com/services/${slug}#product`,
+              "name": "Subhauler.com Domain Asset",
+              "description": `Premium digital namespace for logistics, trucking, and regional freight. This feature page highlights the high-value ${serviceName} capabilities integrated within the Subhauler.com brand structure.`,
+              "brand": {
+                "@type": "Brand",
+                "name": "Subhauler"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "https://www.godaddy.com/domainsearch/find?domainToCheck=subhauler.com",
+                "availability": "https://schema.org/InStock",
+                "priceCurrency": "USD"
+              }
+            },
+            {
               "@type": "Service",
               "name": serviceName,
               "description": `Premium digital infrastructure capabilities for ${serviceName.toLowerCase()} operations.`,
               "provider": {
-                "@type": "Organization",
-                "name": "Subhauler"
+                "@id": "https://www.subhauler.com/#organization"
               }
             }
           ]
